@@ -43,21 +43,21 @@ df2 = df2.rename(columns={"variable": "Model", "value": "Difference"})
 
 print(df2)
 
-blues = ["red", "indigo", "darkslateblue", "darkblue", "navy", "blue", "indigo", "hotpink", "dodgerblue", "black",
-         "darkorchid", "mediumpurple", "violet", "darkslateblue", "darkblue", "navy", "blue", "indigo",
-         "hotpink", "dodgerblue", "black", "darkorchid", "mediumpurple", "violet", "darkslateblue",
-         "darkblue", "navy", "blue", "indigo", "hotpink", "dodgerblue", "black", "darkorchid",
-         "mediumpurple", "violet", "darkslateblue", "darkblue"]
+blues = ["red", "indigo", "lightsteelblue", "skyblue", "lightseagreen", "blue", "indigo", "lightslategray", "dodgerblue", "thistle",
+         "cornflowerblue", "mediumpurple", "grey", "lightsteelblue", "skyblue", "lightseagreen", "blue", "indigo",
+         "lightslategray", "dodgerblue", "thistle", "cornflowerblue", "mediumpurple", "grey", "lightsteelblue",
+         "skyblue", "lightseagreen", "blue", "indigo", "lightslategray", "dodgerblue", "thistle", "cornflowerblue",
+         "mediumpurple", "grey", "lightsteelblue", "skyblue"]
 
 MvS = px.line(df2, x="Year", y="Difference", color="Model", color_discrete_sequence=blues)
 MvS.update_xaxes(
     range=[1979, 2014]
 )
 MvS.update_layout(
-    title="Difference between March and September sea ice levels from 1979 - 2014",
+    title="Difference between March and September sea ice levels from 1983 - 2014",
     xaxis_title="Year",
     yaxis_title="Sea Ice Extent Difference (Million km^2)")
-MvS.show()
+#MvS.show()
 MvS.update_layout(xaxis_range=[1979, 2014])
 
 ### Rolling Average Differnce
@@ -103,7 +103,7 @@ raMvS.update_layout(
     title="5 Year Rolling Average Difference between March and September sea ice levels from 1983 - 2014",
     xaxis_title="Year",
     yaxis_title="Sea Ice Extent Difference (Million km^2)")
-raMvS.show()
+#raMvS.show()
 raMvS.update_layout(xaxis_range=[1983, 2014])
 
 ###### Rolling Average variation from mean
@@ -133,8 +133,25 @@ anomraMvS.update_xaxes(
     range=[1983, 2014]
 )
 anomraMvS.update_layout(
-    title="Yearly anomaly in 5 Year Rolling Average Difference between March and September sea ice levels from 1983 - 2014",
+    title=dict(
+        text="Yearly anomaly in 5 Year Rolling Average Difference between March and September sea ice levels from 1983 - 2014",
+        font=dict(size=30)),
     xaxis_title="Year",
-    yaxis_title="Sea Ice Extent Difference Anomaly (Million km^2)")
+    xaxis=dict(
+        tickfont=dict(size=30)),
+    yaxis_title="Anomaly in Sea Ice Extent Difference (Million km^2)",
+    yaxis=dict(
+        tickfont=dict(size=30)))
+
+anomraMvS.update_layout(
+    title="Anomaly of 5 year rolling average difference between March and September Sea Ice Extent",
+    xaxis_title="Year (1983 - 2014)",
+    yaxis_title="Anomaly of difference in Sea Ice Extent (Million km^2)",
+    font=dict(
+        size=23
+    )
+)
+
+
 anomraMvS.show()
 anomraMvS.update_layout(xaxis_range=[1983, 2014])

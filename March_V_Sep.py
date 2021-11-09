@@ -119,8 +119,9 @@ raMvS.update_layout(xaxis_range=[1983, 2014])
 a = anom_difference["Year"].to_numpy()
 a = np.delete (a, [0,1,2,3])
 
-print(a)
+#print(a)
 
+print(anom_difference)
 
 for i in range(1,37):
 
@@ -133,10 +134,10 @@ for i in range(1,37):
     #print(names[i], x)
 
     y = x[0]
-    print(y)
+    #print(y)
 
     slope.loc[0, names[i]] = y
-    print(slope)
+    #print(slope)
 
 #print(anom_difference)
 
