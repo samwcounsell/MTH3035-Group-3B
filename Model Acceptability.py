@@ -21,6 +21,8 @@ figures = []
 for i in range(1, 37):
     ra[names[i]] = ra.iloc[:, i].rolling(window=5).mean()
 
+print(ra)
+
 #######
 from scipy.stats import ks_2samp
 

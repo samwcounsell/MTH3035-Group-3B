@@ -15,7 +15,11 @@ march_trend = emergent_constraint
 names = df.columns.tolist()
 years = df.loc[0:35, "Year"].to_numpy()
 
+ra_years = df.loc[4:35, "Year"].to_numpy()
+
 sep_trend = df.loc[0:35,]
+
+ra = sep_trend
 
 for i in range(1,37):
 
@@ -33,7 +37,26 @@ for i in range(1,37):
 
 september_trend = september_trend.drop(['Year', 'Month'], axis = 1)
 
+for i in range(1, 37):
+    ra[names[i]] = ra.iloc[:, i].rolling(window=5).mean()
+
+for i in range(1,37):
+
+    ra[names[i]] = ra[names[i]] - ra[names[i]].mean()
+
+    b = ra[names[i]].to_numpy()
+    b = b[~numpy.isnan(b)]
+
+    x = (linregress(ra_years, b))
+
+    y = x[0]
+    print(y)
+
+    ra.loc[0, names[i]] = y
+
 #september_trend.to_csv("september_trend.csv")
+
+ra.to_csv("Hey.csv")
 
 mar_trend = df.loc[36:71,]
 
